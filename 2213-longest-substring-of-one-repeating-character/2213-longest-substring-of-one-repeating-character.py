@@ -21,10 +21,8 @@ class Solution:
 
             if right[4] == right[2] and left[1] == right[0]:
                 suffix = left[4] + right[2]
-
             if left[1] == right[0]:
                 best = max(best, left[4] + right[3])
-
             return (left_char, right_char, length, prefix, suffix, best)
         def build(node, l, r):
             if l == r:
