@@ -26,37 +26,26 @@ class Solution:
                 best = max(best, left[4] + right[3])
 
             return (left_char, right_char, length, prefix, suffix, best)
-
         def build(node, l, r):
             if l == r:
                 tree[node] = (s[l], s[l], 1, 1, 1, 1)
                 return
-
             mid = (l + r) // 2
-
             build(node * 2, l, mid)
             build(node * 2 + 1, mid + 1, r)
-
             tree[node] = merge(tree[node * 2], tree[node * 2 + 1])
-
         def update(node, l, r, idx, char):
             if l == r:
                 tree[node] = (char, char, 1, 1, 1, 1)
                 return
-
             mid = (l + r) // 2
-
             if idx <= mid:
                 update(node * 2, l, mid, idx, char)
             else:
                 update(node * 2 + 1, mid + 1, r, idx, char)
-
             tree[node] = merge(tree[node * 2], tree[node * 2 + 1])
-
         build(1, 0, len(s) - 1)
-
         answer = []
-
         for i in range(len(queryCharacters)):
             update(
                 1,
@@ -65,7 +54,5 @@ class Solution:
                 queryIndices[i],
                 queryCharacters[i]
             )
-
             answer.append(tree[1][5])
-
         return answer
