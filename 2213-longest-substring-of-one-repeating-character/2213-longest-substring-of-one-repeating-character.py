@@ -13,12 +13,9 @@ class Solution:
             best = max(left[5], right[5])
 
             prefix = left[3]
-
             if left[3] == left[2] and left[1] == right[0]:
                 prefix = left[2] + right[3]
-
             suffix = right[4]
-
             if right[4] == right[2] and left[1] == right[0]:
                 suffix = left[4] + right[2]
             if left[1] == right[0]:
