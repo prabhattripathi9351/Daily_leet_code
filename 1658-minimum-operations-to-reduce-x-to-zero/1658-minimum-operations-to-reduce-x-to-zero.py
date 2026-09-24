@@ -1,14 +1,20 @@
 class Solution:
-    def minOperations(self, A: List[int], x: int) -> int:
-        k = sum(A) - x
-        if k < 0: return -1 
-        best = -1
-        s = i = 0
-        for j, num in enumerate(A):
-            s += num
-            while s > k:
-                s -= A[i]
-                i += 1  
-            if s == k:
-                best = max(best, j - i + 1)
-        return -1 if best < 0 else len(A) - best
+    def minOperations(self, nums, x):
+        n = len(nums)
+        total = sum(nums)
+        target = total - x
+        if target < 0:
+            return -1
+        if target == 0:
+            return n
+        left = 0
+        s = 0
+        longest = -1
+        for right in range(n):
+            s += nums[right]
+            while left <= right and s > target:
+                s -= nums[left]
+                left += 1
+            if s == target:
+                longest = max(longest, right - left + 1)
+        return -1 if longest == -1 else n - longest
