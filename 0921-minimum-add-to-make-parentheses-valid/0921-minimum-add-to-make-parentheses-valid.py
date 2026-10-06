@@ -5,7 +5,6 @@ class Solution:
             if char == "(":
                 opened += 1
             elif opened:
-
                 opened -= 1
             else:
                 added += 1
