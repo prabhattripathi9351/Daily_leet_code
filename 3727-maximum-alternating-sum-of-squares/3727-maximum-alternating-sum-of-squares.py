@@ -6,5 +6,4 @@ class Solution:
         ans = 0
         for i in range(n):
             ans += (-1 if i < h else 1) * nums[i] * nums[i]
-
         return ans
