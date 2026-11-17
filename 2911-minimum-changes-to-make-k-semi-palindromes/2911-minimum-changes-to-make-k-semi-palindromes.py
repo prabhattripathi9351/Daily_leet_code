@@ -4,7 +4,6 @@ class Solution:
         INF = 10 ** 4
         BIG = 10 ** 9
         cost = [[BIG] * (n + 1) for _ in range(n + 1)]
-
         for d in range(1, n // 2 + 1):
             tmp = [[0] * (n + 1) for _ in range(n + 1)]
             for length in range(2 * d, n + 1, d):
@@ -16,7 +15,6 @@ class Solution:
                     tmp[idx][length] = ops + tmp[idx + d][length - 2 * d]
                     if tmp[idx][length] < cost[idx][length]:
                         cost[idx][length] = tmp[idx][length]
-
         @lru_cache(maxsize=None)
         def solve(idx: int, parts: int) -> int:
             if idx == n or parts == 0:
@@ -25,5 +23,4 @@ class Solution:
             for length in range(2, n - idx + 1):
                 res = min(res, cost[idx][length] + solve(idx + length, parts - 1))
             return res
-
         return solve(0, k)
